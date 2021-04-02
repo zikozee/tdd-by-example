@@ -8,10 +8,10 @@ import java.util.HashMap;
  * @created : 02 Apr, 2021
  */
 public class Bank {
-    private HashMap<Pair, Integer> rateMap = new HashMap<>();
+    private final HashMap<Pair, Integer> rateMap = new HashMap<>();
 
-    Money reduce(Expression source, String toCurrency){
-        return source.reduce(this, toCurrency);
+    Money reduce(Expression source){
+        return source.reduce(this, "USD");
     }
 
     public int rate(String from, String to){

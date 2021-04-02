@@ -8,8 +8,8 @@ package com.zikozee;
  */
 public class Sum implements Expression{
 
-    Expression augmend;
-    Expression addmend;
+    final Expression augmend;
+    final Expression addmend;
 
     public Sum(Expression augmend, Expression addmend) {
         this.augmend = augmend;

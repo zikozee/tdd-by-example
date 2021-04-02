@@ -42,7 +42,7 @@ class MoneyTest {
         Money five = Money.dollar(5);
         Expression sum = five.plus(five);
         Bank bank =new Bank();
-        Money reduced = bank.reduce(sum, "USD");
+        Money reduced = bank.reduce(sum);
         assertEquals(Money.dollar(10), reduced);
     }
 
@@ -59,14 +59,14 @@ class MoneyTest {
     void testReduceSum() {
         Expression sum =  new Sum(Money.dollar(3), Money.dollar(4));
         Bank bank = new Bank();
-        Money result = bank.reduce(sum, "USD");
+        Money result = bank.reduce(sum);
         assertEquals(Money.dollar(7), result);
     }
 
     @Test
     void testReduceMoney() {
         Bank bank = new Bank();
-        Money result = bank.reduce(Money.dollar(1), "USD");
+        Money result = bank.reduce(Money.dollar(1));
         assertEquals(Money.dollar(1), result);
     }
 
@@ -74,7 +74,7 @@ class MoneyTest {
     void testReduceMoneyDifferentCurrency(){
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
-        Money result = bank.reduce(Money.franc(2), "USD");
+        Money result = bank.reduce(Money.franc(2));
         assertEquals(Money.dollar(1), result);
     }
 
@@ -91,7 +91,7 @@ class MoneyTest {
 
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
-        Money result = bank.reduce(fivebucks.plus(tenFrancs), "USD");
+        Money result = bank.reduce(fivebucks.plus(tenFrancs));
         assertEquals(Money.dollar(10), result);
     }
 
@@ -103,7 +103,7 @@ class MoneyTest {
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
         Expression sum = new Sum(fivebucks, tenFrancs).plus(fivebucks);
-        Money result = bank.reduce(sum, "USD");
+        Money result = bank.reduce(sum);
         assertEquals(Money.dollar(15), result);
     }
 
@@ -115,7 +115,7 @@ class MoneyTest {
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", 2);
         Expression sum = new Sum(fivebucks, tenFrancs).times(2);
-        Money result = bank.reduce(sum, "USD");
+        Money result = bank.reduce(sum);
         assertEquals(Money.dollar(20), result);
     }
 }
